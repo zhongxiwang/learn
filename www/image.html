@@ -2,14 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>漂亮的3D相片展示效果 </title>
+<title>我们的爱</title>
 <meta http-equiv="imagetoolbar" content="no">
 <style type="text/css">
 
 	html {
 
 		overflow: hidden;
-
 	}
 
 	body {
@@ -35,31 +34,17 @@
 	}
 
 	#screen {
-
 		position: absolute;
-
 		width: 100%;
-
 		height: 100%;
-
 		background: #000;
-
 		overflow: hidden;
-
 	}
-
 	#screen img, canvas { 
-
 		position: absolute;
-
 		left: -9999px;
-
 		cursor: pointer;
-
         image-rendering: optimizeSpeed;
-
-
-
 	}
 
 	#screen .href {
@@ -157,26 +142,12 @@
 		cursor: pointer;
 
 	}
+	img{
+	 width:200px;
+	}
 
 </style>
 <script type="text/javascript">
-
-// =============================================================
-
-//           ===== 3D gallery experiment =====
-
-// script written by Gerard Ferrandez - April 5, 2010
-
-// http://www.dhteumeuleu.com
-
-// use under a CC-BY-NC license
-
-// -------------------------------------------------------------
-
-// update: April 17 : added hyperlinks, tweaked z-index
-
-// =============================================================
-
 
 
 var m3D = function () {
@@ -676,8 +647,8 @@ var m3D = function () {
 <body>
 <div id="screen">
 <div id="command">
-<h1>deliberate lies</h1>
-Defiant, stony, deliberate, their lies will not get in my way.
+<h1>Happy everyday</h1>
+fine, nice, So we have to happy every day.
 <div id="bar"></div>
 </div>
 <div id="urlInfo"></div>
@@ -689,59 +660,48 @@ Defiant, stony, deliberate, their lies will not get in my way.
 setTimeout(function() {
 
 	m3D.init(
+	[
 
-		[ 
+			{ src: 'IMG_1273.JPG', url: 'http://www.jq22.com', title: 'jump to random script', color: '#fff' },
 
-			{ src: './images/IMG_1273.JPG', url: 'http://www.jq22.com', title: 'jump to random script', color: '#fff' },
+			{ src: 'IMG_1280.JPG' },
 
-			{ src: './images/IMG_1280.JPG' },
+			{ src: 'IMG_1279.JPG' },
 
-			{ src: './images/IMG_1279.JPG' },
+			{ src: 'IMG_1278.JPG' },
 
-			{ src: './images/IMG_1278.JPG' },
+			{ src: 'IMG_1274.JPG' },
 
-			{ src: './images/IMG_1274.JPG' },
+			{ src: 'IMG_1289.JPG' },
 
-			{ src: './images/IMG_1289.JPG' },
+			{ src: 'IMG_1275.JPG' },
 
-			{ src: './images/IMG_1275.JPG' },
+			{ src: 'IMG_1276.JPG' },
 
-			{ src: './images/IMG_1276.JPG' },
+			{ src: 'IMG_1277.JPG' },
 
-			{ src: './images/IMG_1277.JPG' },
+			{ src: 'IMG_1272.JPG' },
 
-			{ src: './images/IMG_1272.JPG' },
+			{ src: 'IMG_1267.JPG' },
 
-			{ src: './images/IMG_1267.JPG' },
+			{ src: 'IMG_1280.JPG' },
 
-			{ src: './images/IMG_1280.JPG' },
+			{ src: 'IMG_1279.JPG' },
 
-			{ src: './images/IMG_1279.JPG' },
+			{ src: 'IMG_1278.JPG' },
 
-			{ src: './images/IMG_1278.JPG' },
+			{ src:'IMG_1193.JPG' },
+			{ src:'IMG_1194.JPG' },
+			{ src:'IMG_1195.JPG' },
+			{ src:'IMG_1209.JPG' },
+			{ src:'IMG_1210.JPG' },
+			{ src:'IMG_1211.JPG' },
+			{ src:'IMG_1223.JPG' },
+			{ src:'IMG_1224.JPG' },
+			{ src:'IMG_1242.JPG' },
 
-			{ src: './images/IMG_1274.JPG' },
-
-			{ src: './images/IMG_1289.JPG' },
-
-			{ src: './images/IMG_1275.JPG' },
-
-			{ src: './images/IMG_1276.JPG' },
-
-			{ src: './images/IMG_1277.JPG' },
-
-			{ src: './images/IMG_1272.JPG' },
-
-			{ src: './images/IMG_1267.JPG' },
-
-			{ src: './images/IMG_1272.JPG' },
-
-			{ src: './images/IMG_1267.JPG' },
-
-			{ src: './images/IMG_1273.JPG', url: 'http://www.jq22.com', title: 'jump to random script', color: '#fff' }
-
+			{ src: 'IMG_1273.JPG', url: 'http://www.jq22.com', title: 'jump to random script', color: '#fff' }
 		]
-
 	);
 
 }, 500);
