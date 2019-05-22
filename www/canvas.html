@@ -1,0 +1,223 @@
+<html>
+ <head>
+   <script src="H5javascript/model.js"></script>
+   <script src="H5javascript/computer.js"></script>
+  <script type="application/javascript">
+    function draw() {
+      var canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+          var ctx = canvas.getContext("2d");
+
+      }
+    }
+
+    var bilic=20;
+    var xlist=[];
+    var size=10;
+    var ct=null;
+    var count=0;
+    function map()
+    { 
+      ct=new cv("canvas");
+
+      var width= ct.Canvas.width;
+      var height=ct.Canvas.height;
+      var length=width>height?width:height;
+      var y1=0;
+      var zx=0;
+      var x0=width/2;
+      var y0=height/2;
+      ct.Graphics.clearRect(0,0,width,height);
+
+      var config= ct.StruceLine();
+      for(var i=0;i<=length/size;i++)
+      {
+          ct.Line(0,y1,width,y1,ct.StruceLine());
+          config.strokeStyle="rgba(0,0,255,0.5)";
+          ct.Line(zx,0,zx,height,config);
+          zx+=size;
+          y1+=size;
+      }
+      
+      zbx(ct,x0,y0);
+    }
+    function zbx(ct,x0,y0)
+    {
+      var config= ct.StruceLine();
+      config.strokeStyle="rgba(0,0,0,1)";
+      config.lineWidth=1;
+      ct.Line(0,y0,ct.Canvas.width,y0,config);
+      ct.Line(x0,0,x0,ct.Canvas.height,config);
+      var index=0,indext=0;
+      while(true){
+        var result= ToXy(index,index);
+        var results= ToXy(indext,indext);
+        ct.Font(ct.Canvas.height/2,result.y,index);
+        ct.Font(result.x,ct.Canvas.height/2,index);
+        ct.Font(ct.Canvas.height/2,results.y,indext);
+        ct.Font(results.x,ct.Canvas.height/2,indext);
+        if(result.x>=ct.Canvas.width)
+            break;
+        if(result.y>=ct.Canvas.height)
+          break;
+        xlist.push(index);
+        xlist.push(indext);
+        index++;
+        indext--;
+      }
+      count=index-1;
+      fun();
+    }
+    
+
+
+    function fun(){
+      var x0=ct.Canvas.width/2;
+      var y0=ct.Canvas.height/2;
+      var config= ct.StruceLine();
+      config.strokeStyle="rgba(255,0,0,1)";
+      config.lineWidth=1;
+      
+      var topx=0;
+      var topy=0;
+      var b=0;
+      
+      for(var i=parseFloat(count*-1);i<count;i+=0.1)
+      {
+          dynamicX=i;
+
+          //输入公式
+          var y=  js();// Math.cos(i);// i*i;
+		  console.log(y);
+          var result= ToXy(i,y);
+          if(b!==0)
+          ct.Line(topx,topy,result.x,result.y,config);
+          topx=result.x;
+          topy=result.y;
+          b++;
+      }
+    }
+    function ToXy(x,y)
+    {
+      var can= document.getElementById("canvas");
+        var tx=can.width/2+x*bilic;
+        var ty=can.width/2-y*bilic;
+        return {yx:x,yy:y, x:tx,y:ty};
+    }
+
+function run(e)
+{
+  var fd= e.deltaY/100;
+  if(fd>0){
+    bilic+=10;
+    if(bilic>=80)bilic=80;
+  }else{
+    bilic-=10;
+    if(bilic<=10)bilic=10;
+  }
+  var width= ct.Canvas.width;
+  var height=ct.Canvas.height;
+  var x0=width/2;
+  var y0=height/2;
+  map();
+}
+
+  </script>
+ </head>
+ <body onload="">
+   <canvas id="canvas" width="650" height="650" onmousewheel="run(event)" style="box-shadow: black 1px 1px 1px;" >
+   </canvas>
+   <div style="position: fixed;top: 50px;left: 700px;width: 500">
+     <div id="content">
+
+     </div>
+     <div>
+       <button data-isNum="1">9</button>
+       <button data-isNum="1">8</button>
+       <button data-isNum="1">7</button>
+       <button data-isNum="1">6</button>
+       <button data-isNum="1">5</button>
+       <button data-isNum="1">4</button>
+       <button data-isNum="1">3</button>
+       <button data-isNum="1">2</button>
+       <button data-isNum="1">1</button>
+       <button data-isNum="1">0</button>
+       <br/>
+       <button data-isNum="1">.</button>
+       <button data-type="" data-priority="">(</button>
+       <button data-type="" data-priority="">)</button>
+       <button data-type="1" data-priority="0">+</button>
+       <button data-type="1" data-priority="0">-</button>
+       <button data-type="1" data-priority="1">*</button>
+       <button data-type="1" data-priority="1">/</button>
+       <button data-type="1" data-priority="2">^</button>
+       <button data-type="2" data-priority="3">sin</button>
+       <button data-type="2" data-priority="3">tan</button>
+       <button data-type="2" data-priority="3">cos</button>
+       <button data-type="2" data-priority="3">ln</button>
+       <button data-type="2" data-priority="3">&radic;</button>
+       <br/>
+       <button data-isNum="1">x</button>
+       <input type="button" value="=" onclick="js()" />
+       <input type="button" value="refresh" onclick="map()" />
+     </div>
+   </div>
+
+   <script>
+     
+     var ss="";
+
+     //绑定事件
+     function bind()
+     {
+       var list= document.getElementsByTagName("button");
+       for(var i=0;i<list.length;i++)
+       {
+           list[i].onclick=function()
+           {
+             var text= this.innerText;
+             var isNum= this.getAttribute("data-isNum");
+             var priority=this.getAttribute("data-priority");
+             var datatype=this.getAttribute("data-type");
+             ClickEvent(text,isNum,datatype,priority);
+             ss+=text;
+             setcontent();
+           }
+       }
+     }
+ 
+     //*在屏幕上输出式子
+     function setcontent()
+     {
+       var con=document.getElementById("content");
+       con.innerHTML=ss;
+     }
+
+     var Bak=null;
+	 var isEable=false;
+     /*
+     触发=号事件
+     */
+     function js()
+     {
+
+       //if(Bak!==null)Th=JSON.parse(Bak);
+        if(!isEable){
+			ClickEvent("EOF",null,null);
+			isEable=true;
+		}
+        var tmp=null;
+        tmp=JSON.stringify(Th);
+        tmp=JSON.parse(tmp);
+        //if(Bak===null)Bak=JSON.stringify(Th);
+        var res=Result(tmp.DataList[0]);
+        return res;
+        //alert("Result："+res);
+     }
+
+
+
+     bind();
+   </script>
+ </body>
+</html>
